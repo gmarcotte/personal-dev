@@ -1,0 +1,122 @@
+# Don't display the copyright notice during startup
+startup_message off
+
+# Remember 5000 lines of history
+defscrollback 5000
+
+# Fix Putty ctrl+s freeze signal
+bind s
+bind ^S
+
+
+# Bind F1 through F7 to switch to window 1 through 6, respectively
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+
+# Bind F8 to create a new window
+bindkey -k k8 screen 1
+# Bind F9 to split screen horizontally
+bindkey -k k9 split
+# Bind F10 to detach from the window
+bindkey -k k; detach
+# Bind F12 to mapdefault, overriding bindkey for the next keystroke
+bindkey -k F2 mapdefault
+
+# ctrl-left/right to switch windows
+# Unfortunately, this depends on the terminal emulator you use,
+# so you might need different codes, depending on your terminal.
+#
+# bindkey provides a -k option to specify a terminal capability,
+# but I don't think it works if you want Ctrl + a terminal capability.
+bindkey "^[[5D" prev # osx
+bindkey "^[[5C" next
+bindkey "^[[1;5D" prev # linux
+bindkey "^[[1;5C" next
+
+# ctrl-T to start a new 'tab' (c-a c)
+bindkey "^T" screen
+
+# I like to use ctrl-Y to enter copy mode.
+# (Ctrl-y is right next to Ctrl-u, which is
+# typically the first thing I use in copy mode)
+bindkey "^Y" copy
+
+# Uncomment this line to get screen to add lines to xterm's scrollback
+# buffer.  This line tells screen that the following terminals don't have
+# the 'ti' or 'te' capabilities.  (These capabilities inform the terminal
+# that we are starting and ending an application that uses cursor motion.)
+#termcapinfo xterm*|xs|rxvt*|Eterm ti@:te@
+
+# Set the screen title dynamically
+#
+# This depends on some co-operation from your shell.
+# This only works if the shell prints the string '\033k\033\134'
+# as part of its prompt.  See the sample.bashrc file for an example of how to
+# do this in bash.
+#
+# The part after '|' is used when no dynamic title is available from the shell.
+# Feel free to change "bash" to the name of your preferred shell.
+shelltitle '$ |bash'
+
+# Use the hardstatus line to contain the window number & window hardstatus.
+hardstatus string "[screen %n] %h"
+
+# By default, put the window title, username, and hostname in each
+# window's hardstatus line.
+#
+# You can also configure your shell to dynamically update this information.
+# See the sample.bashrc file for an example of how to do this in bash.
+#
+# (The example bashrc code causes bash to update the username and hostname if
+# you ssh to another system.  It also includes the shell's current working
+# directory.)
+defhstatus "^Et ($USER@^EH)"
+
+# Put the hardstatus line in your terminal emulator's title.
+#
+# Indicate that xterm/rxvt/etc have a hardstatus line, and indicate that
+# the commands to set it are the commands to set the title
+termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+
+# Don't display the hardstatus line at the bottom of the screen.
+# (We only use it to contain the title, so it's pretty much the same thing
+# as the caption.  Using the "caption" functionality is better if you want
+# window info displayed at the bottom of the screen.)
+hardstatus off
+
+# Set the string that the windowlist uses for each window
+# This includes the hardstatus info, to make it easier to see what's running in
+# each window.
+windowlist string "[%n] %h%=%f"
+
+# Put the screen number and hardstatus line in the caption
+caption string "[screen %n] %h"
+
+# Other alternatives for the windowlist and caption strings
+#windowlist string "%3n ($USER@%H) %t%=%f"
+#windowlist string "%3n %t (%h)%=%f"
+#caption string "%3n %t%=%h  "
+
+# Uncomment this line to always display the caption at
+# the bottom of the screen
+#caption always
+
+# vi:set filetype=screen:
+#
+# 1-index screens
+screen 1
+bind c screen 1
+bind 0 select 10
+
+
+# Caption bar
+caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
+escape ^Zz
+
+# Turn off the visual bell
+vbell off
