@@ -45,11 +45,6 @@ export MAN_AUTOCOMP_FILE="/tmp/man_completes_`whoami`"
 export SCREEN_DIR="/var/run/screen/S-gmarcotte"
 export SD=$SCREEN_DIR
 
-export ANDROID_SDK=/Users/$USER/adt-bundle-mac-x86_64/sdk
-export ANDROID_HOME=$ANDROID_SDK
-export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools
-export ANDROID_NDK=/Users/$USER/android-ndk-r8b
-
 export PATH=$PATH:/Users/$USER/devtools/arcanist/bin
 export PATH=$PATH:/Users/$USER/devtools/buck/bin
 export PATH=$PATH:/Users/$USER/depot_tools
@@ -61,32 +56,6 @@ export JAVA_HOME;
 
 PATH=$PATH:$JAVA_HOME;
 export PATH;
-
-alias s='ssh gmarcotte@dev1823.prn2.facebook.com'
-
-# Added by Canopy installer on 2013-06-21
-# VIRTUAL_ENV_DISABLE_PROMPT can be '' to make bashprompt show that Canopy is active, otherwise 1
-VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/garrett.marcotte/Library/Enthought/Canopy_32bit/User/bin/activate
-
-# added by setup_fb4a.sh
-export ANDROID_SDK=/Users/garrett.marcotte/android-sdk-macosx
-export ANDROID_NDK=/Users/garrett.marcotte/android-ndk-r8e
-export ANDROID_HOME=${ANDROID_SDK}
-export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
-
-# Snaptu
-export WTK_HOME=~/workspace/WTK
-export MAVEN_HOME="/Users/$USER/bin/apache-maven-3.1.0"
-export PATH="$MAVEN_HOME/bin:$PATH"
-export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
-
-##
-# Your previous /Users/garrett.marcotte/.bash_profile file was backed up as /Users/garrett.marcotte/.bash_profile.macports-saved_2013-10-29_at_16:29:47
-##
-
-# MacPorts Installer addition on 2013-10-29_at_16:29:47: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
 
 # export the first java home we find
 (which java &> /dev/null)
@@ -132,9 +101,9 @@ export LOG_NAME='error_log_gmarcotte'
 
 # Aliases
 alias ss='screen -x'
-alias ls='gls -h $LS_COLOR'
-alias la='gls -ah $LS_COLOR'
-alias ll='gls -lah $LS_COLOR'
+alias ls='ls -h $LS_COLOR'
+alias la='ls -ah $LS_COLOR'
+alias ll='ls -lah $LS_COLOR'
 alias ssh='ssh -A'
 alias g='git'
 alias top='top $TOP_OPTIONS'
@@ -379,7 +348,7 @@ hg_ps1() {
 }
 
 prompt_br() {
-  source ~/scm-prompt
+  source ~/.scm-prompt
   br=`_dotfiles_scm_info`
   test -n "$br" && printf "(%s) " "$br"
 }
@@ -402,5 +371,5 @@ export PATH=$(echo $PATH | awk -F: '
 END { printf "\n"; } ')
 
 
-eval `gdircolors .dir_colors`
+eval `dircolors .dir_colors`
 
