@@ -93,8 +93,8 @@ export LOG_NAME='error_log_gmarcotte'
 alias log='tail -f ~/logs/$LOG_NAME | pretty'
 
 ############## Navigation configuration & aliases
-eval $(gdircolors ~/.dir_colors)
-alias ls='gls -h $LS_COLOR'
+eval $(dircolors ~/.dir_colors)
+alias ls='ls -h $LS_COLOR'
 alias la='ls -ah $LS_COLOR'
 alias ll='ls -lah $LS_COLOR'
 alias back='cd $OLDPWD'
