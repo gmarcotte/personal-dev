@@ -28,7 +28,7 @@ TERM con80x43
 TERM con80x50
 TERM con80x60
 TERM cons25
-TERM xterm
+TERM xterm*
 TERM rxvt
 TERM xterm-color
 TERM color-xterm
@@ -36,7 +36,7 @@ TERM vt100
 TERM dtterm
 TERM color_xterm
 TERM ansi
-TERM screen
+TERM screen*
 TERM screen.linux
 TERM kon
 TERM kterm

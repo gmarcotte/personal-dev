@@ -95,6 +95,7 @@ alias log='tail -f ~/logs/$LOG_NAME | pretty'
 ############## Navigation configuration & aliases
 eval $(dircolors ~/.dir_colors)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+alias ls='ls --color=tty'
 alias la='ls -a'
 alias ll='ls -la'
 alias back='cd $OLDPWD'
