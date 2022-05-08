@@ -23,11 +23,11 @@ unset USERNAME
 [[ -f "$HOME/.inputrc" ]] && export INPUTRC="$HOME/.inputrc"
 
 ########### Screen configuration
-export SCREEN_DIR="/var/run/screen/S-gmarcotte"
+export SCREEN_DIR="/var/run/screen/S-discord"
 export SD=$SCREEN_DIR
 alias ss='screen -x'
-alias screens='ll /var/run/screen/S-gmarcotte'
-alias gscr='cd $SCREEN_DIR'
+alias screens='ll $SD'
+alias gscr='cd $SD'
 
 ########## Source control configuration & aliases
 export SVN_EDITOR=`which vim`
