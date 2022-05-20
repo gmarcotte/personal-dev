@@ -13,3 +13,5 @@ ln -sf ~/dotfiles/discord/.screenrc ~/.screenrc
 ln -sf ~/dotfiles/discord/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/discord/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/discord/.zprofile ~/.zprofiles
+
+source ~/dotfiles/discord/install_packages.sh

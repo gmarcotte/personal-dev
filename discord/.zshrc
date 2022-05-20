@@ -199,6 +199,10 @@ function myip () {
   fi;
 }
 
+function gr()
+{
+  grep -r "$1" .
+}
 
 # api <file.php>
 # print the functions defined in the file
