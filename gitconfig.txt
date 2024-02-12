@@ -61,7 +61,13 @@
   untracked = cyan
 
 [commit]
-  template = ~/.git-commit-template.txt
+  template = ~/.git-template
 
 [gc]
 	auto = 0
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

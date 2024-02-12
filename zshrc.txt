@@ -30,6 +30,9 @@ alias screens='ll /var/run/screen/S-gmarcotte'
 alias gscr='cd $SCREEN_DIR'
 
 ########## Source control configuration & aliases
+zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+fpath=(~/.zsh $fpath)
+
 export SVN_EDITOR=`which vim`
 export GIT_EDITOR=`which vim`
 export GIT_CEILING_DIRECTORIES=`echo $HOME | sed 's#\[^/]*$##'`
@@ -46,18 +49,18 @@ function gbr()
 ########### SSH configuration & aliases
 alias ssh='ssh -A'
 alias sush='sudo ssh'
-alias dev='coder ssh gmarcotte-dev'
-alias devb='coder workspaces rebuild gmarcotte-dev'
 
 ########### Update the PATH
 add_path() { export PATH="$PATH:$1"; }
 add_pre_path() { export PATH="$1:$PATH"; }
 
-add_path $HOME/bin
-add_path /Users/$USER/depot_tools
 add_path /Applications/Xcode.app/Contents/Developer/usr/bin
-add_path /usr/local/smlnj/bin
 add_path /opt/homebrew/bin
+
+############ Set up PYENV
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 ############ Compatability options
 # The BSD sed on mac uses -E, while the GNU one on linux uses -r
@@ -88,10 +91,6 @@ else
   export TOP_OPTIONS='-s10 -ocpu'
 fi;
 
-############## Logging config
-export LOG_NAME='error_log_gmarcotte'
-alias log='tail -f ~/logs/$LOG_NAME | pretty'
-
 ############## Navigation configuration & aliases
 eval $(gdircolors ~/.dir_colors)
 alias ls='gls -h $LS_COLOR'
@@ -114,11 +113,11 @@ alias l='less'
 alias vt='vim -t'
 
 #### RANDOM FUNCTIONS #####
+
+# Kill the most-recently run command
 function jk {
   kill -9 %$1
 }
-
-# Misc utilities:
 
 # Repeat a command N times.  You can do something like
 #  repeat 3 echo 'hi'
@@ -199,18 +198,6 @@ function myip () {
 }
 
 
-# api <file.php>
-# print the functions defined in the file
-function api()
-{
-  if [ -f "$1" ]; then
-    cat $1 | grep 'public'
-    cat $1 | grep 'protected'
-    cat $1 | grep 'private'
-    cat $1 | grep 'function' | grep -v 'public' | grep -v 'private' | grep -v 'protected'
-  fi;
-}
-
 # print the nth line of a file
 function line()
 {
@@ -219,25 +206,10 @@ function line()
   fi;
 }
 
+# Open all files matching a search term for editing in vim
 function vimscan()
 {
   vim `scan $1 | cut -f 1 -d : | uniq`
-}
-
-# res <file.php>
-# for conflicts found when rebasing, edit a file then stage it for commit
-function res()
-{
-  if [ -f "$1" ]; then
-    vim $1 && hg resolve --mark $1
-  fi;
-}
-
-function hres()
-{
-  if [ -f "$1" ]; then
-    vim $1 && hg resolve --mark $1
-  fi;
 }
 
 # anyvi <file>
